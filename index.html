@@ -17,92 +17,455 @@
             --light-brown: #D2B48C;
             --gradient-primary: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
             --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            --gradient-dark: linear-gradient(135deg, #000000 0%, #2c1a0d 100%);
         }
 
         html { scroll-behavior: smooth; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; background-color: #f8f9fa; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            overflow-x: hidden; 
+            background-color: #f8f9fa; 
+        }
 
-        /* NAVIGATION */
-        .navbar { background: rgba(0,0,0,0.9); padding: 1rem 0; transition: all 0.3s ease; }
-        .navbar-brand { font-weight: 800; font-size: 1.8rem; color: var(--accent-gold) !important; }
-        .nav-link { color: #fff !important; font-weight: 500; margin: 0 0.5rem; position: relative; transition: all 0.3s ease; }
-        .nav-link.active, .nav-link:hover { color: var(--accent-gold) !important; }
-        .nav-link.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background-color: var(--accent-gold); }
+        /* NAVIGATION - MOBILE OPTIMIZED */
+        .navbar { 
+            background: rgba(0,0,0,0.95); 
+            padding: 0.8rem 0; 
+            transition: all 0.3s ease; 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .navbar-brand { 
+            font-weight: 800; 
+            font-size: 1.6rem; 
+            color: var(--accent-gold) !important; 
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .nav-link { 
+            color: #fff !important; 
+            font-weight: 500; 
+            margin: 0 0.3rem; 
+            position: relative; 
+            transition: all 0.3s ease; 
+            padding: 0.5rem 0.8rem !important;
+            border-radius: 5px;
+        }
+        .nav-link.active, .nav-link:hover { 
+            color: var(--accent-gold) !important; 
+            background: rgba(212, 175, 55, 0.1);
+        }
+        .nav-link.active::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: -5px; 
+            left: 0; 
+            width: 100%; 
+            height: 2px; 
+            background-color: var(--accent-gold); 
+        }
+        .navbar-toggler {
+            border: none;
+            padding: 4px 8px;
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
 
-        /* HERO SECTION */
-        .hero-section { min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, rgb(10,10,10) 0%, rgba(160,82,45,0.8) 50%, rgba(210,180,140,0.7) 100%); color: white; overflow: hidden; }
-        .hero-overlay { position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.3); z-index: 1; }
-        .hero-content { position: relative; z-index: 2; }
-        .hero-title { font-size: 3.5rem; font-weight: 800; margin-bottom: 1.5rem; color: #FFD700; text-shadow: 2px 2px 8px rgba(0,0,0,0.6); line-height:1.2; }
-        .hero-subtitle { font-size:1.4rem; margin-bottom:2.5rem; color:#FFF8DC; text-shadow:1px 1px 4px rgba(0,0,0,0.5); line-height:1.6; }
-        .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
-        .btn-hero-primary { background: linear-gradient(135deg,#FFD700,#FFA500); border:none; color:var(--dark-brown); font-weight:600; padding:1rem 2.5rem; border-radius:50px; font-size:1.1rem; box-shadow:0 8px 25px rgba(255,215,0,0.4); transition: all 0.3s ease; }
-        .btn-hero-primary:hover { transform: translateY(-3px); box-shadow:0 12px 35px rgba(255,215,0,0.6); color:var(--dark-brown); }
-        .btn-hero-secondary { background:transparent; border:2px solid #FFD700; color:#FFD700; font-weight:600; padding:1rem 2.5rem; border-radius:50px; font-size:1.1rem; transition: all 0.3s ease; }
-        .btn-hero-secondary:hover { background:#FFD700; color:var(--dark-brown); transform: translateY(-3px); }
+        /* HERO SECTION - MOBILE OPTIMIZED */
+        .hero-section { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            background: var(--gradient-dark), 
+                        url('images/bmiport.jpg') center/cover no-repeat;
+            color: white; 
+            overflow: hidden; 
+            position: relative;
+        }
+        .hero-overlay { 
+            position: absolute; 
+            top:0; 
+            left:0; 
+            right:0; 
+            bottom:0; 
+            background: rgba(0,0,0,0.4); 
+            z-index: 1; 
+        }
+        .hero-content { 
+            position: relative; 
+            z-index: 2; 
+            text-align: center;
+        }
+        .hero-title { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            margin-bottom: 1.2rem; 
+            color: #FFD700; 
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6); 
+            line-height:1.2; 
+        }
+        .hero-subtitle { 
+            font-size:1.1rem; 
+            margin-bottom:2rem; 
+            color:#FFF8DC; 
+            text-shadow:1px 1px 4px rgba(0,0,0,0.5); 
+            line-height:1.6; 
+            padding: 0 1rem;
+        }
+        .hero-btns { 
+            display:flex; 
+            gap:1rem; 
+            flex-wrap:wrap;
+            justify-content: center;
+        }
+        .btn-hero-primary { 
+            background: var(--gradient-gold); 
+            border:none; 
+            color:var(--dark-brown); 
+            font-weight:600; 
+            padding:0.9rem 1.8rem; 
+            border-radius:50px; 
+            font-size:1rem; 
+            box-shadow:0 8px 25px rgba(255,215,0,0.4); 
+            transition: all 0.3s ease; 
+            flex: 1;
+            min-width: 160px;
+            max-width: 220px;
+        }
+        .btn-hero-primary:hover { 
+            transform: translateY(-3px); 
+            box-shadow:0 12px 35px rgba(255,215,0,0.6); 
+            color:var(--dark-brown); 
+        }
+        .btn-hero-secondary { 
+            background:transparent; 
+            border:2px solid #FFD700; 
+            color:#FFD700; 
+            font-weight:600; 
+            padding:0.9rem 1.8rem; 
+            border-radius:50px; 
+            font-size:1rem; 
+            transition: all 0.3s ease; 
+            flex: 1;
+            min-width: 160px;
+            max-width: 220px;
+        }
+        .btn-hero-secondary:hover { 
+            background:#FFD700; 
+            color:var(--dark-brown); 
+            transform: translateY(-3px); 
+        }
 
         /* SECTIONS */
-        .section { padding:5rem 0; position: relative; }
-        .section-title { font-size:2.8rem; font-weight:800; color: var(--primary-brown); margin-bottom:3rem; text-align:center; position: relative; }
-        .section-title::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--gradient-gold); border-radius: 2px; }
+        .section { 
+            padding:4rem 0; 
+            position: relative; 
+        }
+        .section-title { 
+            font-size:2.2rem; 
+            font-weight:800; 
+            color: var(--primary-brown); 
+            margin-bottom:2.5rem; 
+            text-align:center; 
+            position: relative; 
+        }
+        .section-title::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: -15px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: 80px; 
+            height: 4px; 
+            background: var(--gradient-gold); 
+            border-radius: 2px; 
+        }
 
         /* CARDS */
-        .feature-card { background:white; border-radius:15px; padding:2rem; text-align:center; box-shadow:0 8px 25px rgba(139,69,19,0.1); transition: all 0.3s ease; border:1px solid rgba(139,69,19,0.1); height:100%; }
-        .feature-card:hover { transform: translateY(-8px); box-shadow:0 15px 40px rgba(139,69,19,0.2); }
-        .feature-icon { width:70px; height:70px; background: var(--gradient-gold); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; font-size:1.8rem; color:var(--dark-brown); transition: all 0.3s ease; }
-        .feature-card:hover .feature-icon { transform: scale(1.1); }
+        .feature-card { 
+            background:white; 
+            border-radius:15px; 
+            padding:1.8rem; 
+            text-align:center; 
+            box-shadow:0 8px 25px rgba(139,69,19,0.1); 
+            transition: all 0.3s ease; 
+            border:1px solid rgba(139,69,19,0.1); 
+            height:100%; 
+            margin-bottom: 1.5rem;
+        }
+        .feature-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow:0 15px 40px rgba(139,69,19,0.2); 
+        }
+        .feature-icon { 
+            width:70px; 
+            height:70px; 
+            background: var(--gradient-gold); 
+            border-radius:50%; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            margin:0 auto 1.5rem; 
+            font-size:1.8rem; 
+            color:var(--dark-brown); 
+            transition: all 0.3s ease; 
+        }
+        .feature-card:hover .feature-icon { 
+            transform: scale(1.1); 
+        }
 
         /* PRODUCTS */
-        .products-section { background: linear-gradient(135deg, rgba(248,249,250,0.9) 0%, rgba(233,236,239,0.9) 100%); }
-        .product-card { background:white; border-radius:15px; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,0.1); transition: all 0.3s ease; height:100%; border:1px solid rgba(139,69,19,0.1); }
-        .product-card:hover { transform: translateY(-8px); box-shadow:0 15px 40px rgba(139,69,19,0.2); }
-        .product-card .card-img-top { height:220px; object-fit:cover; transition: transform 0.3s ease; }
-        .product-card:hover .card-img-top { transform: scale(1.05); }
+        .products-section { 
+            background: linear-gradient(135deg, rgba(248,249,250,0.9) 0%, rgba(233,236,239,0.9) 100%); 
+        }
+        .product-card { 
+            background:white; 
+            border-radius:15px; 
+            overflow:hidden; 
+            box-shadow:0 8px 25px rgba(0,0,0,0.1); 
+            transition: all 0.3s ease; 
+            height:100%; 
+            border:1px solid rgba(139,69,19,0.1); 
+            margin-bottom: 1.5rem;
+        }
+        .product-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow:0 15px 40px rgba(139,69,19,0.2); 
+        }
+        .product-card .card-img-top { 
+            height:220px; 
+            object-fit:cover; 
+            transition: transform 0.3s ease; 
+        }
+        .product-card:hover .card-img-top { 
+            transform: scale(1.05); 
+        }
+        .card-body {
+            padding: 1.5rem;
+        }
 
         /* STATS */
-        .stats-section { background: var(--gradient-primary); color:white; padding:4rem 0; }
-        .stat-item { text-align:center; padding:1rem; }
-        .stat-number { font-size:2.5rem; font-weight:800; color: var(--accent-gold); display:block; margin-bottom:0.5rem; }
-        .stat-label { font-size:1.1rem; opacity:0.9; font-weight:500; }
+        .stats-section { 
+            background: var(--gradient-primary); 
+            color:white; 
+            padding:3rem 0; 
+        }
+        .stat-item { 
+            text-align:center; 
+            padding:1rem; 
+            margin-bottom: 1rem;
+        }
+        .stat-number { 
+            font-size:2.2rem; 
+            font-weight:800; 
+            color: var(--accent-gold); 
+            display:block; 
+            margin-bottom:0.5rem; 
+        }
+        .stat-label { 
+            font-size:1rem; 
+            opacity:0.9; 
+            font-weight:500; 
+        }
 
         /* CONTACT */
-        .contact-form { background:white; padding:2.5rem; border-radius:15px; box-shadow:0 10px 40px rgba(0,0,0,0.1); border:1px solid rgba(139,69,19,0.1); }
-        .form-control { border:2px solid #e9ecef; border-radius:10px; padding:1rem; margin-bottom:1.5rem; font-size:1rem; transition: all 0.3s ease; }
-        .form-control:focus { border-color: var(--primary-brown); box-shadow:0 0 0 0.2rem rgba(139,69,19,0.15); }
-        .contact-icon { width:50px; height:50px; background: var(--gradient-primary); border-radius:50%; display:flex; align-items:center; justify-content:center; margin-right:1rem; flex-shrink:0; color:white; }
+        .contact-form { 
+            background:white; 
+            padding:2rem; 
+            border-radius:15px; 
+            box-shadow:0 10px 40px rgba(0,0,0,0.1); 
+            border:1px solid rgba(139,69,19,0.1); 
+        }
+        .form-control { 
+            border:2px solid #e9ecef; 
+            border-radius:10px; 
+            padding:0.9rem; 
+            margin-bottom:1.2rem; 
+            font-size:1rem; 
+            transition: all 0.3s ease; 
+        }
+        .form-control:focus { 
+            border-color: var(--primary-brown); 
+            box-shadow:0 0 0 0.2rem rgba(139,69,19,0.15); 
+        }
+        .contact-icon { 
+            width:50px; 
+            height:50px; 
+            background: var(--gradient-primary); 
+            border-radius:50%; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            margin-right:1rem; 
+            flex-shrink:0; 
+            color:white; 
+        }
 
         /* FOOTER */
-        footer { background: #000; color:white; }
-        footer a { color: #FFD700; text-decoration:none; }
-        footer a:hover { color:#FFF; }
-        .social-links a:hover { transform: translateY(-3px); color: var(--accent-gold) !important; }
+        footer { 
+            background: #000; 
+            color:white; 
+            padding: 2.5rem 0 1.5rem;
+        }
+        footer a { 
+            color: #FFD700; 
+            text-decoration:none; 
+        }
+        footer a:hover { 
+            color:#FFF; 
+        }
+        .social-links a { 
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover { 
+            transform: translateY(-3px); 
+            color: var(--accent-gold) !important; 
+        }
 
-        /* RESPONSIVE */
-        @media (max-width:768px){.hero-title{font-size:2.2rem}.hero-subtitle{font-size:1.1rem}.section-title{font-size:2rem}.hero-btns{justify-content:center}.btn-hero-primary,.btn-hero-secondary{padding:.8rem 2rem;font-size:1rem}.section{padding:3rem 0}}
-        @media (max-width:576px){.hero-title{font-size:1.8rem}.section-title{font-size:1.6rem}.hero-btns{flex-direction:column;align-items:center}.hero-btns .btn{width:100%;max-width:250px;margin-bottom:.5rem}}
+        /* BACK TO TOP BUTTON */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--gradient-gold);
+            color: var(--dark-brown);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
 
         /* HERO FLOAT */
-        @keyframes float{0%{transform:translateY(0px);}50%{transform:translateY(-20px);}100%{transform:translateY(0px);}}
-        .floating-hero{animation:float 6s ease-in-out infinite;}
+        @keyframes float{
+            0%{transform:translateY(0px);}
+            50%{transform:translateY(-20px);}
+            100%{transform:translateY(0px);}
+        }
+        .floating-hero{
+            animation:float 6s ease-in-out infinite;
+            max-width: 90%;
+            margin: 0 auto;
+            display: block;
+        }
 
         /* LOADING BAR */
-        .loading-bar { position:fixed; top:0; left:0; width:0%; height:3px; background:var(--gradient-gold); z-index:9999; transition: width 0.3s ease; }
+        .loading-bar { 
+            position:fixed; 
+            top:0; 
+            left:0; 
+            width:0%; 
+            height:3px; 
+            background:var(--gradient-gold); 
+            z-index:9999; 
+            transition: width 0.3s ease; 
+        }
 
+        /* MOBILE MENU IMPROVEMENTS */
+        .navbar-collapse {
+            background: rgba(0,0,0,0.95);
+            padding: 1rem;
+            border-radius: 0 0 10px 10px;
+            margin-top: 0.5rem;
+        }
+        .navbar-nav {
+            padding: 0.5rem 0;
+        }
+
+        /* PRODUCT GRID IMPROVEMENTS */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* RESPONSIVE IMPROVEMENTS */
+        @media (min-width: 576px) {
+            .hero-title { font-size: 2.8rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .hero-content { text-align: left; }
+            .hero-btns { justify-content: flex-start; }
+        }
+
+        @media (min-width: 768px) {
+            .hero-title { font-size: 3.2rem; }
+            .hero-subtitle { font-size: 1.3rem; }
+            .section-title { font-size: 2.5rem; }
+            .navbar-brand { font-size: 1.8rem; }
+        }
+
+        @media (min-width: 992px) {
+            .hero-title { font-size: 3.5rem; }
+            .hero-subtitle { font-size: 1.4rem; }
+            .section-title { font-size: 2.8rem; }
+            .navbar-nav {
+                background: transparent;
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-hero-primary, .btn-hero-secondary {
+                width: 100%;
+                max-width: 280px;
+            }
+            .section {
+                padding: 3rem 0;
+            }
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* UTILITY CLASSES */
+        .text-brown { color: var(--primary-brown); }
+        .bg-brown { background-color: var(--primary-brown); }
+        .mb-4 { margin-bottom: 1.5rem !important; }
     </style>
 </head>
 <body>
     <div class="loading-bar" id="loadingBar"></div>
 
     <!-- NAVIGATION -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="index.html">PrimeMillstone</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-gem me-2"></i>PrimeMillstone
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -126,7 +489,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 text-center" data-aos="fade-left">
+                <div class="col-lg-4 text-center mt-4 mt-lg-0" data-aos="fade-left">
                     <img src="images/bmiport.jpg" class="img-fluid rounded shadow-lg floating-hero" alt="Mill Illustration">
                 </div>
             </div>
@@ -147,16 +510,18 @@
                     <h3 class="mb-4 text-brown">Your Trusted Partner in Mill Solutions</h3>
                     <p class="lead mb-4">Welcome to PrimeMillstone. We specialize in supplying high-quality millstones, durable electric motors, and reliable mill spare parts. Our mission is to deliver exceptional value through premium products and customer-focused service.</p>
                     <div class="row">
-                        <div class="col-6 mb-3">
+                        <div class="col-sm-6 mb-3">
                             <div class="feature-card">
                                 <div class="feature-icon"><i class="fas fa-award"></i></div>
                                 <h5 class="text-brown">Premium Quality</h5>
+                                <p class="mb-0">Industry-leading quality standards</p>
                             </div>
                         </div>
-                        <div class="col-6 mb-3">
+                        <div class="col-sm-6 mb-3">
                             <div class="feature-card">
                                 <div class="feature-icon"><i class="fas fa-users"></i></div>
                                 <h5 class="text-brown">20+ Years Experience</h5>
+                                <p class="mb-0">Trusted by hundreds of clients</p>
                             </div>
                         </div>
                     </div>
@@ -169,139 +534,81 @@
     <section id="products" class="section products-section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Featured Products</h2>
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="product-card">
-                        <img src="images/bmmillston.jpg" class="card-img-top" alt="Premium Millstone">
-                        <div class="card-body">
-                            <h5 class="card-title">Premium Millstone</h5>
-                            <p class="card-text">High-quality durable millstone designed for industrial milling operations with guaranteed longevity.</p>
-                            <a href="products.html" class="btn btn-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
-                        </div>
-                    </div>
-                </div>
-                 <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up">
-                    <div class="product-card">
-                        <img src="images/bm13.jpg" class="card-img-top" alt="Premium Millstone">
-                        <div class="card-body">
-                            <h5 class="card-title">Premium Millstone</h5>
-                            <p class="card-text">High-quality durable millstone designed for industrial milling operations with guaranteed longevity.</p>
-                            <a href="products.html" class="btn btn-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
-                        </div>
+            <div class="product-grid">
+                <div class="product-card" data-aos="fade-up">
+                    <img src="images/bmmillston.jpg" class="card-img-top" alt="Premium Millstone">
+                    <div class="card-body">
+                        <h5 class="card-title">Premium Millstone</h5>
+                        <p class="card-text">High-quality durable millstone designed for industrial milling operations with guaranteed longevity.</p>
+                        <a href="products.html" class="btn btn-hero-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
                     </div>
                 </div>
                 
-    
-                <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="product-card">
-                        <img src="images/bmchnga2.jpg" class="card-img-top" alt="Mill Spare Parts">
-                        <div class="card-body">
-                            <h5 class="card-title">Mill Spare Parts</h5>
-                            <p class="card-text">High quality Rubber v belts for any industrial use.</p>
-                            <a href="products.html" class="btn btn-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
-                        </div>
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="images/bm10.jpg" class="card-img-top" alt="Electric Motor">
+                    <div class="card-body">
+                        <h5 class="card-title">Electric Motor</h5>
+                        <p class="card-text">Robust electric motors suitable for heavy-duty mill operations with optimized energy efficiency.</p>
+                        <a href="products.html" class="btn btn-hero-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-                <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="product-card">
-                        <img src="images/bm10.jpg" class="card-img-top" alt="Electric Motor">
-                        <div class="card-body">
-                            <h5 class="card-title">Electric Motor</h5>
-                            <p class="card-text">Robust electric motors suitable for heavy-duty mill operations with optimized energy efficiency.</p>
-                            <a href="products.html" class="btn btn-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
-                        </div>
+                
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="images/bm7.jpg" class="card-img-top" alt="Mill Spare Parts">
+                    <div class="card-body">
+                        <h5 class="card-title">Mill Spare Parts</h5>
+                        <p class="card-text">All types of bearings for any use with guaranteed quality and durability.</p>
+                        <a href="products.html" class="btn btn-hero-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="product-card">
-                        <img src="images/millspare.jpg" class="card-img-top" alt="Mill Spare Parts">
-                        <div class="card-body">
-                            <h5 class="card-title">Mill Spare Parts</h5>
-                            <p class="card-text">Reliable spare parts for all types of mill equipment, ensuring minimal downtime and optimal performance.</p>
-                            <a href="products.html" class="btn btn-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
-                        </div>
+                <div class="product-card" data-aos="fade-up">
+                    <img src="images/bm13.jpg" class="card-img-top" alt="Premium Millstone">
+                    <div class="card-body">
+                        <h5 class="card-title">Premium Millstone</h5>
+                        <p class="card-text">High-quality durable millstone designed for industrial milling operations with guaranteed longevity.</p>
+                        <a href="products.html" class="btn btn-hero-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    
-                <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="product-card">
-                        <img src="images/bm7.jpg" class="card-img-top" alt="Mill Spare Parts">
-                        <div class="card-body">
-                            <h5 class="card-title">Mill Spare Parts</h5>
-                            <p class="card-text">All types of bearings for any use.</p>
-                            <a href="products.html" class="btn btn-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
-                        </div>
+                
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="images/bmchnga2.jpg" class="card-img-top" alt="Mill Spare Parts">
+                    <div class="card-body">
+                        <h5 class="card-title">Mill Spare Parts</h5>
+                        <p class="card-text">High quality Rubber v belts for any industrial use with excellent durability.</p>
+                        <a href="products.html" class="btn btn-hero-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="images/bmmizane4.jpg" class="card-img-top" alt="Digital Scale">
+                    <div class="card-body">
+                        <h5 class="card-title">Digital Scale</h5>
+                        <p class="card-text">High quality digital scales that can weigh from 40kg to 500kg with precision.</p>
+                        <a href="products.html" class="btn btn-hero-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="product-card">
-                        <img src="images/millspare.jpg" class="card-img-top" alt="Mill Spare Parts">
-                        <div class="card-body">
-                            <h5 class="card-title">Mill Spare Parts</h5>
-                            <p class="card-text">Reliable spare parts for all types of mill equipment, ensuring minimal downtime and optimal performance.</p>
-                            <a href="products.html" class="btn btn-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-
- <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="product-card">
-                        <img src="images/bmmizane4.jpg" class="card-img-top" alt="Mill Spare Parts">
-                        <div class="card-body">
-                            <h5 class="card-title">digital mizan </h5>
-                            <p class="card-text">High quality digital scales that can weigh from 40kg to 500kg</p>
-                            <a href="products.html" class="btn btn-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
- <div class="col-12 col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="product-card">
-                        <img src="images/bmmizane.jpg" class="card-img-top" alt="Mill Spare Parts">
-                        <div class="card-body">
-                            <h5 class="card-title">digital mizan </h5>
-                            <p class="card-text">High quality digital scales that can weigh from 40kg to 500kg</p>
-                            <a href="products.html" class="btn btn-primary w-100"><i class="fas fa-eye me-2"></i> View Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- STATS SECTION -->
     <section class="stats-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 stat-item" data-aos="fade-up">
+                <div class="col-md-3 col-6 stat-item" data-aos="fade-up">
                     <span class="stat-number" data-count="500">0</span>
                     <span class="stat-label">Happy Clients</span>
                 </div>
-                <div class="col-md-3 stat-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-md-3 col-6 stat-item" data-aos="fade-up" data-aos-delay="100">
                     <span class="stat-number" data-count="1500">0</span>
                     <span class="stat-label">Products Sold</span>
                 </div>
-                <div class="col-md-3 stat-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-md-3 col-6 stat-item" data-aos="fade-up" data-aos-delay="200">
                     <span class="stat-number" data-count="20">0</span>
                     <span class="stat-label">Years Experience</span>
                 </div>
-                <div class="col-md-3 stat-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="col-md-3 col-6 stat-item" data-aos="fade-up" data-aos-delay="300">
                     <span class="stat-number" data-count="50">0</span>
                     <span class="stat-label">Partners Worldwide</span>
                 </div>
@@ -316,9 +623,15 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
                     <div class="contact-form">
-                        <form onsubmit="alert('Thank you! We will contact you soon.'); return false;">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
-                            <input type="email" class="form-control" placeholder="Email Address" required>
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Email Address" required>
+                                </div>
+                            </div>
                             <input type="text" class="form-control" placeholder="Subject" required>
                             <textarea class="form-control" rows="5" placeholder="Message" required></textarea>
                             <button type="submit" class="btn btn-hero-primary w-100"><i class="fas fa-paper-plane me-2"></i> Send Message</button>
@@ -331,22 +644,37 @@
 
     <!-- FOOTER -->
     <footer class="py-4">
-        <div class="container text-center">
-            <p>&copy; 2025 PrimeMillstone. All Rights Reserved.</p>
-            <div class="social-links mt-2">
-                <a href="#"><i class="fab fa-facebook fa-lg me-3"></i></a>
-                <a href="#"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                <a href="#"><i class="fab fa-linkedin fa-lg"></i></a>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p>&copy; 2025 PrimeMillstone. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook fa-lg me-3"></i></a>
+                        <a href="#"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                        <a href="#"><i class="fab fa-linkedin fa-lg"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
     <script>
         // Initialize AOS
-        AOS.init({ duration: 1200, once: true });
+        AOS.init({ 
+            duration: 1000, 
+            once: true,
+            offset: 100
+        });
 
         // Loading bar
         window.addEventListener('load', () => {
@@ -355,11 +683,27 @@
             setTimeout(() => bar.style.display = 'none', 400);
         });
 
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNav');
+            const backToTop = document.getElementById('backToTop');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                backToTop.classList.add('show');
+            } else {
+                navbar.classList.remove('scrolled');
+                backToTop.classList.remove('show');
+            }
+        });
+
         // Highlight active nav link
         const currentPath = window.location.pathname.split("/").pop();
         document.querySelectorAll('.nav-link').forEach(link => {
             if(link.getAttribute('href') === currentPath || (currentPath === '' && link.getAttribute('href') === 'index.html')) {
                 link.classList.add('active');
+            } else {
+                link.classList.remove('active');
             }
         });
 
@@ -390,7 +734,35 @@
 
         const statsSection = document.querySelector('.stats-section');
         if(statsSection) statsObserver.observe(statsSection);
+
+        // Form submission handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            // In a real application, you would send the form data to a server here
+            alert('Thank you! We will contact you soon.');
+            document.getElementById('contactForm').reset();
+        }
+
+        // Back to top functionality
+        document.getElementById('backToTop').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Mobile menu improvement - close on click
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarToggler.click();
+                }
+            });
+        });
     </script>
 </body>
 </html>
-
